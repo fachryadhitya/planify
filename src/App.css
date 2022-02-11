@@ -5,6 +5,7 @@ p {
 
 body {
   min-height: 100vh;
+  background-color: rgb(211, 199, 199);
 }
 
 .parent {

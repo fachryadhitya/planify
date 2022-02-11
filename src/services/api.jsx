@@ -1,4 +1,4 @@
-//mock dummy api, in this case using cookies
+//mock dummy api, in this case using localStorage
 
 export function getAllEvent() {
   const existingLocalStorage = localStorage.getItem('eventList') ? JSON.parse(localStorage.getItem('eventList')) : [];

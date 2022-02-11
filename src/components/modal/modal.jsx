@@ -16,7 +16,7 @@ function getRandomColor() {
 
 const Modal = ({ isShowing, hide, onFinish, data }) => {
   /**
-   * this is ofc opinionated but I actually agree with the article here: https://kentcdodds.com/blog/stop-using-isloading-booleans
+   * this is ofcourse opinionated but I actually agree with the article here: https://kentcdodds.com/blog/stop-using-isloading-booleans
    *
    * since then I decided to use the same approach as the article (using string as state trigger loading)
    */
@@ -24,6 +24,8 @@ const Modal = ({ isShowing, hide, onFinish, data }) => {
   const [eventList, setEventList] = useState([
     {
       name: '',
+      invitees: '',
+      time: '',
     },
   ]);
 
@@ -33,9 +35,11 @@ const Modal = ({ isShowing, hide, onFinish, data }) => {
       const existData = existingLocalStorage?.find((item) => item.month === data?.month && item?.date === data?.date);
 
       if (existData) {
-        setEventList(existData?.event.map((item) => ({ name: item?.name })));
+        setEventList(
+          existData?.event.map((item) => ({ name: item?.name, invitees: item?.invitees, time: item?.time })),
+        );
       } else {
-        setEventList([{ name: '' }]);
+        setEventList([{ name: '', invitees: '', time: '' }]);
       }
     }
   }, [data]);
@@ -54,7 +58,7 @@ const Modal = ({ isShowing, hide, onFinish, data }) => {
   };
 
   const handleAddClick = () => {
-    setEventList([...eventList, { name: '' }]);
+    setEventList([...eventList, { name: '', invitees: '', time: '' }]);
   };
 
   const onSubmit = (e) => {
@@ -111,23 +115,40 @@ const Modal = ({ isShowing, hide, onFinish, data }) => {
 
               <form onSubmit={onSubmit}>
                 {eventList?.map((item, i) => (
-                  <div key={i} className="form_wrapper">
+                  <div key={i} className="form_wrapper" data-testid="form">
+                    <div>
+                      <input
+                        required
+                        value={item?.name}
+                        type="text"
+                        name="name"
+                        placeholder="event name"
+                        onChange={(e) => handleInputChange(e, i)}
+                      />
+                      <input
+                        required
+                        value={item?.invitees}
+                        type="text"
+                        name="invitees"
+                        placeholder="invitees"
+                        onChange={(e) => handleInputChange(e, i)}
+                      />
+                    </div>
+
                     <input
-                      required
-                      value={item?.name}
-                      type="text"
-                      style={{ width: '80%' }}
-                      name="name"
+                      type="time"
+                      name="time"
+                      value={item?.time}
                       onChange={(e) => handleInputChange(e, i)}
+                      required
                     />
 
                     <button
                       disabled={eventList.length < 1}
                       type="button"
                       onClick={() => handleRemoveClick(i)}
-                      style={{ width: '10%' }}
                     >
-                      -
+                      –
                     </button>
                   </div>
                 ))}

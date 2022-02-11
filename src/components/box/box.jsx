@@ -24,14 +24,10 @@ const EventWrapper = styled.div`
   gap: 0.3rem;
 `;
 
-const Box = ({color, onClick, item, eventPerDay, day}) => {
+const Box = ({ color, onClick, item, eventPerDay, day }) => {
   return (
-    <BoxDate
-      color={color}
-      className="square"
-      onClick={onClick}
-    >
-      <div className={`${item?.date === day ? 'current_date' : ''} day`}>
+    <BoxDate data-testid="box_container" color={color} className="square" onClick={onClick}>
+      <div data-testid="current_date" className={`${item?.date === day ? 'current_date' : ''} day`}>
         <span>{item?.date}</span>
         <span> ({item?.day})</span>
       </div>
@@ -42,7 +38,7 @@ const Box = ({color, onClick, item, eventPerDay, day}) => {
             <EventWrapper key={ev.date}>
               {ev?.event?.map((item, i) => (
                 <EventList key={i} color={item?.color}>
-                  {item?.name}
+                  {item?.name} with {item?.invitees} ({item?.time})
                 </EventList>
               ))}
             </EventWrapper>

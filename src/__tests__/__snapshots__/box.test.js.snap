@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box Component Render successfully 1`] = `
+<div>
+  <div
+    class="sc-gsDKAQ jLYEMe square"
+    color="[object Object]"
+    data-testid="box_container"
+  >
+    <div
+      class="current_date day"
+      data-testid="current_date"
+    >
+      <span>
+        11
+      </span>
+      <span>
+         (
+        Wednesday
+        )
+      </span>
+    </div>
+  </div>
+</div>
+`;

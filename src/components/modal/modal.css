@@ -63,6 +63,14 @@ button {
 .form_wrapper {
   display: flex;
   margin-top: 2rem;
+  gap: 1rem;
+}
+
+.form_wrapper div {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 0.5rem;
 }
 
 .form_wrapper input {
