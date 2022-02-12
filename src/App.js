@@ -108,7 +108,7 @@ function App() {
     <>
       <Modal isShowing={isShowing} hide={toggle} onFinish={toggle} data={data} />
       <div className="parent">
-        <p className="month_name">{dt.toLocaleDateString('en-us', { month: 'long' })}</p>
+        <h1 className="month_name">{dt.toLocaleDateString('en-us', { month: 'long' })}</h1>
         <div className="day_container">
           {weekdays.map((item, i) => (
             <p key={i} className="week_name">
