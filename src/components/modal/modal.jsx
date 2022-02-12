@@ -42,7 +42,7 @@ const Modal = ({ isShowing, hide, onFinish, data }) => {
         setEventList([{ name: '', invitees: '', time: '' }]);
       }
     }
-  }, [data]);
+  }, [data, isShowing]);
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
